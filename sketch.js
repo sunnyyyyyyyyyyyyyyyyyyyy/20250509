@@ -19,7 +19,7 @@ function gotHands(results) {
 }
 
 function setup() {
-  createCanvas(640, 480);
+  createCanvas(640, 480); //產生一個畫布，640*480
   video = createCapture(VIDEO, { flipped: true });
   video.hide();
 
@@ -34,7 +34,26 @@ function draw() {
   if (hands.length > 0) {
     for (let hand of hands) {
       if (hand.confidence > 0.1) {
-        // Loop through keypoints and draw circles
+        // Define ranges for keypoint groups
+        const ranges = [
+          [0, 4],  // 0-4
+          [5, 8],  // 5-8
+          [9, 12], // 9-12
+          [13, 16],// 13-16
+          [17, 20] // 17-20
+        ];
+
+        // Loop through each range and draw lines
+        for (let range of ranges) {
+          beginShape();
+          for (let i = range[0]; i <= range[1]; i++) {
+            let keypoint = hand.keypoints[i];
+            vertex(keypoint.x, keypoint.y);
+          }
+          endShape(CLOSE);
+        }
+
+        // Draw circles for each keypoint
         for (let i = 0; i < hand.keypoints.length; i++) {
           let keypoint = hand.keypoints[i];
 
