@@ -50,7 +50,7 @@ function draw() {
             let keypoint = hand.keypoints[i];
             vertex(keypoint.x, keypoint.y);
           }
-          endShape(CLOSE);
+          endShape(); // Remove CLOSE to avoid closing the shape
         }
 
         // Draw circles for each keypoint
