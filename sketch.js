@@ -45,12 +45,16 @@ function draw() {
 
         // Loop through each range and draw lines
         for (let range of ranges) {
+          stroke(0, 255, 0); // Set line color (green)
+          strokeWeight(2);   // Set line thickness
+          noFill();          // Ensure no fill for the shape
+
           beginShape();
           for (let i = range[0]; i <= range[1]; i++) {
             let keypoint = hand.keypoints[i];
-            vertex(keypoint.x, keypoint.y);
+            vertex(keypoint.x, keypoint.y); // Add each keypoint as a vertex
           }
-          endShape(); // Remove CLOSE to avoid closing the shape
+          endShape(); // End the shape (do not close it)
         }
 
         // Draw circles for each keypoint
@@ -59,13 +63,13 @@ function draw() {
 
           // Color-code based on left or right hand
           if (hand.handedness == "Left") {
-            fill(255, 0, 255);
+            fill(255, 0, 255); // Magenta for left hand
           } else {
-            fill(255, 255, 0);
+            fill(255, 255, 0); // Yellow for right hand
           }
 
           noStroke();
-          circle(keypoint.x, keypoint.y, 16);
+          circle(keypoint.x, keypoint.y, 16); // Draw a circle at each keypoint
         }
       }
     }
