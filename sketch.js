@@ -56,7 +56,7 @@ function draw() {
 
   // 繪製大拇指的綠色軌跡
   stroke(0, 255, 0); // 綠色
-  strokeWeight(2);
+  strokeWeight(10); // 線條粗細為 10
   noFill();
   beginShape();
   for (let pos of thumbTrail) {
@@ -113,8 +113,8 @@ function draw() {
     }
   }
 
-  // 如果大拇指離開圓，停止記錄軌跡
+  // 如果大拇指離開圓，停止記錄新的軌跡軌跡
   if (!thumbTouching) {
-    thumbTrail = [];
+    thumbTrail = thumbTrail; // 保留已畫出的軌跡mbTrail; // 保留已畫出的軌跡
   }
 }
