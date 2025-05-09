@@ -8,6 +8,7 @@ let circleX, circleY; // 圓的座標
 const circleSize = 100; // 圓的大小
 let indexTrail = []; // 食指的紅色軌跡
 let thumbTrail = []; // 大拇指的綠色軌跡
+let circleTrail = []; // 圓的移動軌跡
 let thumbTouching = false; // 大拇指是否接觸圓
 
 function preload() {
@@ -38,6 +39,16 @@ function setup() {
 
 function draw() {
   image(video, 0, 0);
+
+  // 繪製圓的移動軌跡
+  stroke(0, 255, 0); // 綠色
+  strokeWeight(10); // 線條粗細為 10
+  noFill();
+  beginShape();
+  for (let pos of circleTrail) {
+    vertex(pos.x, pos.y);
+  }
+  endShape();
 
   // 繪製圓
   fill(0, 0, 255, 150); // 半透明藍色
@@ -93,6 +104,9 @@ function draw() {
 
           // 記錄食指的軌跡
           indexTrail.push({ x: indexFinger.x, y: indexFinger.y });
+
+          // 記錄圓的移動軌跡
+          circleTrail.push({ x: circleX, y: circleY });
         }
 
         // 檢測大拇指（編號 4）是否碰觸圓
@@ -105,6 +119,10 @@ function draw() {
 
           // 記錄大拇指的軌跡
           thumbTrail.push({ x: thumb.x, y: thumb.y });
+
+          // 記錄圓的移動軌跡
+          circleTrail.push({ x: circleX, y: circleY });
+
           thumbTouching = true;
         } else {
           thumbTouching = false;
