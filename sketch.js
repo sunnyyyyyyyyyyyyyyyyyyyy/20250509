@@ -113,8 +113,8 @@ function draw() {
     }
   }
 
-  // 如果大拇指離開圓，停止記錄新的軌跡軌跡
+  // 如果大拇指離開圓，停止記錄新的軌跡
   if (!thumbTouching) {
-    thumbTrail = thumbTrail; // 保留已畫出的軌跡mbTrail; // 保留已畫出的軌跡
+    thumbTrail = thumbTrail; // 保留已畫出的軌跡
   }
 }
